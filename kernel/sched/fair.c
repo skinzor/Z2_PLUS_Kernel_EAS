@@ -9529,10 +9529,6 @@ static inline bool nohz_kick_needed(struct rq *rq)
 	if (energy_aware())
 		return rq->nr_running >= 2 && cpu_overutilized(cpu);
 
-	/* Do idle load balance if there have misfit task */
-	if (energy_aware())
-		return rq->misfit_task;
-
 	rcu_read_lock();
 	sd = rcu_dereference(per_cpu(sd_busy, cpu));
 	if (sd) {
