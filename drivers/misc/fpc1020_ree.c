@@ -247,20 +247,7 @@ static void fpc1020_report_work_func(struct work_struct *work)
 		input_sync(fpc1020->input_dev);		
 		fpc1020->report_key = 0;
 }
-/*
-static void fpc1020_hw_reset(struct fpc1020_data *fpc1020)
-{
-	pr_info("HW reset\n");
-	gpio_set_value(fpc1020->reset_gpio, 1);
-	udelay(FPC1020_RESET_HIGH1_US);
 
-	gpio_set_value(fpc1020->reset_gpio, 0);
-	udelay(FPC1020_RESET_LOW_US);
-
-	gpio_set_value(fpc1020->reset_gpio, 1);
-	udelay(FPC1020_RESET_HIGH2_US);
-}
-*/
 static int fpc1020_get_pins(struct fpc1020_data *fpc1020)
 {
 	int retval = 0;
@@ -480,8 +467,6 @@ static int fpc1020_probe(struct platform_device *pdev)
 	}
 	
 	gpio_direction_output(fpc1020->reset_gpio, 1);
-	/*Do HW reset*/
-	//fpc1020_hw_reset(fpc1020);
 
 	fpc1020->fb_notif.notifier_call = fb_notifier_callback;
 	retval = fb_register_client(&fpc1020->fb_notif);
