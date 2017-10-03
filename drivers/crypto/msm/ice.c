@@ -1535,8 +1535,9 @@ struct platform_device *qcom_ice_get_pdevice(struct device_node *node)
 		}
 	}
 
-	if(ice_pdev)
-		pr_info("%s: matching platform device %pK\n", __func__, ice_pdev);
+	if (ice_pdev)
+		pr_info("%s: matching platform device %pK\n", __func__,
+			ice_pdev);
 out:
 	return ice_pdev;
 }
@@ -1554,7 +1555,8 @@ static struct ice_device *get_ice_device_from_storage_type
 
 	list_for_each_entry(ice_dev, &ice_devices, list) {
 		if (!strcmp(ice_dev->ice_instance_type, storage_type)) {
-			pr_info("%s: found ice device %p\n", __func__, ice_dev);
+			pr_debug("%s: found ice device %pK\n",
+				__func__, ice_dev);
 			return ice_dev;
 		}
 	}
