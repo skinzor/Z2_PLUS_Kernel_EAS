@@ -9644,7 +9644,7 @@ kick_active_balance(struct rq *rq, struct task_struct *p, int new_cpu)
 		rq->active_balance = 1;
 		rq->push_cpu = new_cpu;
 		get_task_struct(p);
-		rq->push_task = p;
+		//rq->push_task = p;
 		rc = 1;
 	}
 	raw_spin_unlock(&rq->lock);
