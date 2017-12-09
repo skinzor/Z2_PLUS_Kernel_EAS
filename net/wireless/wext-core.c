@@ -478,7 +478,7 @@ void wireless_send_event(struct net_device *	dev,
 	 * practice.
 	 */
 	if (WARN_ON(cmd == SIOCGIWSCAN && extra))
-		extra = NULL;
+		extra = 0;
 
 	/* Get the description of the Event */
 	if (cmd <= SIOCIWLAST) {
