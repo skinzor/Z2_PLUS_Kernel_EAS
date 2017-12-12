@@ -199,10 +199,10 @@ static unsigned int get_next_freq(struct sugov_policy *sg_policy,
 	struct cpufreq_policy *policy = sg_policy->policy;
 	unsigned int freq = arch_scale_freq_invariant() ?
 				policy->cpuinfo.max_freq : policy->cur;
-	int __read_mostly pwr_running = (cpu_rq(0)->nr_running + cpu_rq(1)->nr_running);
-	int __read_mostly prf_running = (cpu_rq(2)->nr_running + cpu_rq(3)->nr_running);
+	int pwr_running = (cpu_rq(0)->nr_running + cpu_rq(1)->nr_running);
+	int prf_running = (cpu_rq(2)->nr_running + cpu_rq(3)->nr_running);
 
-	if (pwr_running || prf_running < 2)
+	if ((pwr_running < 2) || (prf_running < 2))
 		freq = (freq + (freq >> 2)) * util / max;
 	else
 		freq = freq * util / max;
